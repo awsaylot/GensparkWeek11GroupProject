@@ -1,8 +1,10 @@
 package com.genspark.Pucci.Entities;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,8 +16,13 @@ public class Order {
     private int order_id;
 
     @Autowired
+    @Column(name = "purchase_list")
     @ElementCollection
     private List<Product> purchase_list;
+
+    @Temporal(TemporalType.DATE)
+    @CreatedDate
+    private Date createdAt;
 
     private double purchase_total;
 
@@ -48,5 +55,13 @@ public class Order {
 
     public void setPurchase_total(double purchase_total) {
         this.purchase_total = purchase_total;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

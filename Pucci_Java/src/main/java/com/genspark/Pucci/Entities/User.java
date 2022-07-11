@@ -1,6 +1,7 @@
 package com.genspark.Pucci.Entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="tbl_users")
@@ -10,7 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
 
-    private String signInType;
+    private String sign_in_type;
 
     private String name;
 
@@ -22,8 +23,12 @@ public class User {
 
     private String phone;
 
-    public User(String signInType, String name, String username, String password, String email, String phone) {
-        this.signInType = signInType;
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Order.class)
+    @JoinColumn(name="purchase_list")
+    private List<Order> completed_orders;
+
+    public User(String sign_in_type, String name, String username, String password, String email, String phone) {
+        this.sign_in_type = sign_in_type;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -39,12 +44,12 @@ public class User {
         this.user_id = user_id;
     }
 
-    public String getSignInType() {
-        return signInType;
+    public String getSign_in_type() {
+        return sign_in_type;
     }
 
-    public void setSignInType(String signInType) {
-        this.signInType = signInType;
+    public void setSign_in_type(String sign_in_type) {
+        this.sign_in_type = sign_in_type;
     }
 
     public String getName() {
@@ -85,5 +90,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Order> getCompleted_orders() {
+        return completed_orders;
+    }
+
+    public void setCompleted_orders(List<Order> completed_orders) {
+        this.completed_orders = completed_orders;
     }
 }
