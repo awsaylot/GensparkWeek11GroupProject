@@ -1,0 +1,9 @@
+.footer-container {
+    font-family:'Courier New', Courier, monospace;
+    padding: 50px;
+    background-color: #1b1b1b;
+    color: #e5dfd9;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

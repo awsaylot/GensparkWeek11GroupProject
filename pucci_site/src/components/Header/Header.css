@@ -1,0 +1,22 @@
+.header-container {
+    font-family: 'Granjon', serif;
+    background-color: #1b1b1b;
+    color: #e5dfd9;
+    padding: 15px;
+}
+
+.pucci-logo {
+    font-family: 'Granjon';
+    color: white;
+}
+
+.nav-link {
+    color: #e5dfd9;
+    font-family:'Courier New', Courier, monospace;
+}
+.nav-link:hover {
+    color: white;
+}
+.nav-link:active {
+    color: white;
+}

@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
+import "./Footer.css";
+
 
 const footer = () => {
   return (
-    <div>footer</div>
+    <div className="footer-container">
+
+    &copy;2022 Puccio Pucci - All rights reserved.
+
+    </div>
   )
 }
 

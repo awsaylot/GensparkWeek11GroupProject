@@ -4,6 +4,9 @@ import './App.css';
 import Wrapper from './components/Wrapper/Wrapper';
 import LoginPage from './components/Login Page/LoginPage';
 import RegisterPage from './components/Register Page/RegisterPage';
+import Home from './components/Home/Home';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -20,6 +23,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header/>
 
       <button onClick={toggleLogin}>Login</button>
       <button onClick={toggleRegister}>Register</button>
@@ -34,7 +38,7 @@ function App() {
               </div>
             }
           />
-        </Wrapper>},
+        </Wrapper>}
 
       {register &&
         <Wrapper>
@@ -53,6 +57,10 @@ function App() {
             } 
             />
         </Wrapper>}
+
+        <Home/>
+
+        <Footer/>
     </div>
   );
 }
