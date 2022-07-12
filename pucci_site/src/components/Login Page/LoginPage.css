@@ -10,23 +10,22 @@
 .login-box {
     position: relative;
     width: 30%;
-    height: 420px;
+    height: 40%;
     background-color: #fff;
     border: 1px solid #999;
     border-radius: 4px;
     margin: 20px auto;
     padding: 20px;
-    overflow: auto;
     background-image: url("/./src/assets/images/pink_tutu_dog.webp");
-    background-size: contain;
+    background-size: cover;
 }
 
 .btn-close {
     cursor: pointer;
     border: 1px solid #999;
     border-radius: 50%;
-    position: fixed;
-    right: calc(40% - 75px);
+    position: relative;
+    left: 48%;
     top: 20px;
 }
 
