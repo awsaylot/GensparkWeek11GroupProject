@@ -4,6 +4,7 @@ package com.genspark.Pucci.Controllers;
 import com.genspark.Pucci.Entities.Order;
 import com.genspark.Pucci.Entities.Product;
 import com.genspark.Pucci.Entities.User;
+import com.genspark.Pucci.Services.MailSenderService;
 import com.genspark.Pucci.Services.OrderServiceInterface;
 import com.genspark.Pucci.Services.ProductServiceInterface;
 import com.genspark.Pucci.Services.UserServiceInterface;
@@ -23,6 +24,14 @@ public class Controller {
 
     @Autowired
     private UserServiceInterface userService;
+
+    @Autowired
+    private MailSenderService mailSenderService;
+
+    @GetMapping("/sendmail")
+    public void sendMail(){
+        this.mailSenderService.sendMail("quyenh678@gmail.com", "Pucchi Order Confirmation", "Hello! This is a message from Pucchi.");
+    }
 
     @GetMapping("/orders")
     public List<Order> getOrders() {
