@@ -11,12 +11,7 @@ const LoginPage = props => {
 
   return (
     <div className="login-page">
-      <div className="login-box" style={
-        {
-          backgroundImage: `url(${process.env.PUBLIC_URL + "/IMG_9554.webp"})`,
-          backgroundSize: "contain",
-        }
-      }>
+      <div className="login-box">
 
         <button className="btn-close" onClick={props.handleClose} />
 
