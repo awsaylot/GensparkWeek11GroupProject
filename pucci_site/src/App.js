@@ -30,9 +30,7 @@ function App() {
             handleClose={toggleLogin}
             content={
               <div>
-                <p />
-                <h2 style={{ fontWeight: 'bolder' }}>Login</h2>
-                <p style={{ fontWeight: 'bold' }}>Please enter your username and password</p>
+                <h2 style={{ fontWeight: 'bolder' }}>Sign In</h2>
               </div>
             }
           />

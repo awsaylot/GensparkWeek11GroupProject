@@ -5,6 +5,7 @@
     background-color: #999;
     width: 100%;
     height: 100vh;
+    font-family: monospace;
 }
   
 .login-box {
@@ -29,18 +30,26 @@
     top: 20px;
 }
 
-.login-btn,.register-btn {
+.login-btn {
     display: block;
     width: 40%;
     margin-left: 30%;
     margin-top: 4%;
     margin-bottom: 4%;
-    background-color: rgb(225, 0, 255);
+    /* background-color: rgba(225, 0, 255, 0.427); */
     font-size: medium;
+    background-color: transparent;
+    border: 5px solid white;
+    font-size: medium;
+    font-family: monospace;
+    color: white;
+}
+.login-btn::hover {
+    color: black;
 }
 
 input[type="text"]{
-    width: 95%;
+    width: 60%;
     display: block;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -49,6 +58,13 @@ input[type="text"]{
     padding: 5px;
     margin-top: 5%;
     margin-bottom: 5%;
+    position: relative;
+    left: 18%;
+    text-align: center;
+}
+
+.text-input-wrapper {
+    justify-content: center;
 }
 
 input[type="checkbox"] {
