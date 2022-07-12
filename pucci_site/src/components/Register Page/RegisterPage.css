@@ -9,8 +9,8 @@
   
 .reg-box {
     position: relative;
-    width: 50%;
-    height: 640px;
+    width: 40%;
+    height: 560px;
     background-color: #fff;
     border: 1px solid #999;
     border-radius: 4px;
@@ -24,7 +24,7 @@
     border: 1px solid #999;
     border-radius: 50%;
     position: fixed;
-    right: calc(40% - 75px);
+    right: calc(30%);
     top: 20px;
 }
 
@@ -44,15 +44,13 @@ div[type="regHeader"],div[type="userHeader"] {
 }
 
 input[type="name"] {
-    width: 45%;
-    display: block;
+    width: 50%;
+    display: inline-flex;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border-width: thin;
     padding: 5px;
-    margin-top: 5%;
-    margin-bottom: 5%;
 }
 
 input[type="text"] {
@@ -63,8 +61,8 @@ input[type="text"] {
     border-radius: 5px;
     border-width: thin;
     padding: 5px;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 input[type="checkbox"] {

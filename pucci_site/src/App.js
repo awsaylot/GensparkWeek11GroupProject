@@ -52,7 +52,8 @@ function App() {
               <div>
                 <p>Login Information</p>
               </div>
-            } />
+            } 
+            />
         </Wrapper>}
     </div>
   );

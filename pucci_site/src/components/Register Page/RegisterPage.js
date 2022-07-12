@@ -17,20 +17,20 @@ const RegisterPage = props => {
                     {props.content}
                 </div>
 
-                <input type="name" className="firstName" placeholder="First Name">First Name</input>
-                <input type="name" className="lastName" placeholder="Last Name">Last Name</input> 
+                <input type="name" className="firstName" placeholder="First Name"/>
+                <input type="name" className="lastName" placeholder="Last Name"/>
 
-                <input type="text" className="email" placeholder="Email Address">Email Address</input>
+                <input type="text" className="email" placeholder="Email Address"/>
 
-                <input type="text" className="phone" placeholder="Phone Number">Phone Number</input>
+                <input type="text" className="phone" placeholder="Phone Number"/>
 
                 <div type="userHeader">
                     {props.content2}
                 </div>
 
-                <input type="text" className="username" placeholder="Username">Username</input>
+                <input type="text" className="username" placeholder="Username"/>
 
-                <input type="text" className="password" placeholder="Password">Password</input>
+                <input type="text" className="password" placeholder="Password"/>
                 <input type="text" className="password" placeholder="Re-enter Password"/>
 
                 <input type="checkbox"/><span>I accept <a href="#">Terms of Use</a></span>

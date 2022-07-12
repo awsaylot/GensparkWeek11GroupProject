@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import RegisterPage from '../Register Page/RegisterPage';
 import "./LoginPage.css";
 
 const LoginPage = props => {
+
+  const openRegisterPage = () => {
+    // props.handleClose();
+    RegisterPage(props);
+  }
+
   return (
     <div className="login-page">
       <div className="login-box" style={
@@ -25,7 +32,7 @@ const LoginPage = props => {
 
         <a className="btn btn-primary btn-med login-btn" href="#" role="button" onClick={props.handleClose}>Login</a>
 
-        <a className="btn btn-primary btn-med register-btn" href="#" role="button" onClick={props.handleClose}>Register</a>
+        <a className="btn btn-primary btn-med register-btn" href="#" role="button" onClick={openRegisterPage}>Register</a>
 
       </div>
     </div>
