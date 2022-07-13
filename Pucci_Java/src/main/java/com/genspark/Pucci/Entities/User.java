@@ -27,6 +27,8 @@ public class User {
     @JoinColumn(name="purchase_list")
     private List<Order> completed_orders;
 
+    public User(){}
+
     public User(String sign_in_type, String name, String username, String password, String email, String phone) {
         this.sign_in_type = sign_in_type;
         this.name = name;

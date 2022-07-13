@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,17 +21,27 @@ public class Order {
     @ElementCollection
     private List<Product> purchase_list;
 
-    @Temporal(TemporalType.DATE)
+    @Column(nullable = false, updatable = false)
     @CreatedDate
-    private Date createdAt;
+    private LocalDateTime createdOn = LocalDateTime.now();
 
     private double purchase_total;
 
+    private int user_id;
+
+    //optional fields. commented out for now.
+//    @LastModifiedBy
+//    private String modifiedBy = null;
+//
+//    @LastModifiedDate
+//    private LocalDateTime updatedOn = null;
+
     public Order(){}
 
-    public Order(List<Product> purchase_list, double purchase_total) {
+    public Order(List<Product> purchase_list, double purchase_total, int user_id) {
         this.purchase_list = purchase_list;
         this.purchase_total = purchase_total;
+        this.user_id = user_id;
     }
 
     public int getOrder_id() {
@@ -57,11 +68,19 @@ public class Order {
         this.purchase_total = purchase_total;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }
