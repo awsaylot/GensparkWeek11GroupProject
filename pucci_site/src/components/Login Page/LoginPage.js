@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import RegisterPage from '../Register Page/RegisterPage';
 import "./LoginPage.css";
 

@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './RegisterPage.css';
 
 const RegisterPage = props => {
     return (
         <div className="reg-page">
-            <div className="reg-box" style={
-                {
-                    backgroundImage: `url(${process.env.PUBLIC_URL + "/IMG_9554.webp"})`,
-                    backgroundSize: "contain",
-                }
-            }>
+            <div className="reg-box">
 
                 <button className="btn-close" onClick={props.handleClose} />
                 

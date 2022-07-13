@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import Wrapper from './components/Wrapper/Wrapper';
@@ -7,11 +7,26 @@ import RegisterPage from './components/Register Page/RegisterPage';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [register, setRegister] = useState(false);
+
+  // const [products, setProducts] = useState([];
+  //   const fetchProducts = async() => {
+  //     const {data} = await commerce.products.list();
+
+  //     setProducts(data);
+
+  //   }
+
+  //   useEffect(() => {
+  //     fetchProducts();
+  //   }, []);
+
+  //   console.log(products);
 
   const toggleLogin = () => {
     setIsOpen(!isOpen);
@@ -23,44 +38,48 @@ function App() {
 
   return (
     <div className="App">
-      <Header/>
 
-      <button onClick={toggleLogin}>Login</button>
-      <button onClick={toggleRegister}>Register</button>
+      <BrowserRouter>
+        <Header />
 
-      {isOpen &&
-        <Wrapper>
-          <LoginPage
-            handleClose={toggleLogin}
-            content={
-              <div>
-                <h2 style={{ fontWeight: 'bolder' }}>Sign In</h2>
-              </div>
-            }
-          />
-        </Wrapper>}
+        <button onClick={toggleLogin}>Login</button>
+        <button onClick={toggleRegister}>Register</button>
 
-      {register &&
-        <Wrapper>
-          <RegisterPage
-            handleClose={toggleRegister}
-            content={
-              <div>
-                <h2>New User</h2>
-                <p>Personal Information</p>
-              </div>
-            }
-            content2={
-              <div>
-                <p>Login Information</p>
-              </div>
-            } 
+        {isOpen &&
+          <Wrapper>
+            <LoginPage
+              handleClose={toggleLogin}
+              content={
+                <div>
+                  <h2 style={{ fontWeight: 'bolder' }}>Sign In</h2>
+                </div>
+              }
             />
-        </Wrapper>}
+          </Wrapper>}
 
-        <Home/>
+        {register &&
+          <Wrapper>
+            <RegisterPage
+              handleClose={toggleRegister}
+              content={
+                <div>
+                  <h2>New User</h2>
+                  <p>Personal Information</p>
+                </div>
+              }
+              content2={
+                <div>
+                  <p>Login Information</p>
+                </div>
+              }
+            />
+          </Wrapper>}
 
-        <Footer/>
+        <Home />
+      </BrowserRouter>
+
+
+      <Footer />
     </div>
   );
 }
