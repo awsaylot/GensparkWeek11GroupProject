@@ -5,14 +5,19 @@
     padding: 15px;
 }
 
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
 .pucci-logo {
-    font-family: 'Granjon';
+    font-family: GucciFont, serif;
     color: white;
 }
 
 .nav-link {
     color: #e5dfd9;
-    font-family:'Courier New', Courier, monospace;
+    font-family: FjallaOne;
 }
 .nav-link:hover {
     color: white;
