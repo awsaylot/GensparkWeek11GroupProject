@@ -14,14 +14,11 @@ public class Product {
 
     private double price;
 
-    private int stock;
-
     public Product(){};
 
-    public Product(String name, double price, int stock) {
+    public Product(String name, double price) {
         this.name = name;
         this.price = price;
-        this.stock = stock;
     }
 
     public int getProduct_id() {
@@ -46,13 +43,5 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 }
