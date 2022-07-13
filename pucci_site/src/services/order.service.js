@@ -81,6 +81,8 @@ class OrderService {
     };
 }
 
+export default new OrderService();
+
 
 // documentation found here: https://www.npmjs.com/package/axios
 // if this doesn't work, use http-common. can also try removing quotes around the data

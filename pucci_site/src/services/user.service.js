@@ -12,10 +12,10 @@ class UserService {
     getAllUsers() {
         return axios({
             method: 'get',
-            url: `api/users/${user_id}`,
-            headers: {
-                Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            }
+            url: `api/users/`,
+            // headers: {
+            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
+            // }
         }).then(function (response) {
             console.log(response);
         }).catch(function (error) {
@@ -27,9 +27,9 @@ class UserService {
         return axios({
             method: 'get',
             url: `api/users/${user_id}`,
-            headers: {
-                Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            }
+            // headers: {
+            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
+            // }
         }).then(function (response) {
             console.log(response);
         }).catch(function (error) {
@@ -41,9 +41,9 @@ class UserService {
         return axios({
             method: 'post',
             url: `api/users`,
-            headers: {
-                Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            },
+            // headers: {
+            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
+            // },
             data: {
                 "sign_in_type": sign_in_type,
                 "name": name,
@@ -78,9 +78,9 @@ class UserService {
         return axios({
             method: 'delete',
             url: `api/users/${user_id}`,
-            headers: {
-                Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            }
+            // headers: {
+            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
+            // }
         }).then(function (response) {
             console.log(response);
         }).catch(function (error) {
@@ -89,5 +89,6 @@ class UserService {
     }
 }
 
+export default new UserService();
 
 // documentation found here: https://www.npmjs.com/package/axios

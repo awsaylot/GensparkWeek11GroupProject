@@ -8,6 +8,10 @@ import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter } from 'react-router-dom';
+import MailService from './services/mail.service';
+import UserService from './services/user.service';
+import OrderService from './services/order.service';
+import ProductService from './services/product.service';
 
 function App() {
 

@@ -81,5 +81,6 @@ class ProductService {
     }
 }
 
+export default new ProductService();
 
 // documentation found here: https://www.npmjs.com/package/axios

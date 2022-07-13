@@ -24,5 +24,7 @@ class MailService {
     }
 }
 
+export default new MailService();
+
 
 // documentation found here: https://www.npmjs.com/package/axios
