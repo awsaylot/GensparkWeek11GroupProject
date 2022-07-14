@@ -28,6 +28,13 @@
     color: #e5dfd9;
 }
 
+.register-btn:hover { 
+    /* These are the colors GUCCI uses for everything - buttons, nav, and footer */
+    background-color: #1b1b1b;
+    border-color: #1b1b1b;
+    color: #e5dfd9;
+}
+
 div[type="regHeader"],div[type="userHeader"] {
     text-align: center;
     color: #e5dfd9;

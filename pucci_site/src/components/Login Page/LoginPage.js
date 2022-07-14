@@ -8,6 +8,11 @@ const LoginPage = props => {
   const modalPosition = React.useState('center');
   const modalSize = React.useState('small');
   const initValues = { username: "", password: "" };
+  const initPlaceholders = {
+    username: "Username",
+    password: "Password"
+  };
+  const [formPlaceholders, setFormPlaceholders] = useState(initPlaceholders);
   const [formValues, setFormValues] = useState(initValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -20,6 +25,7 @@ const LoginPage = props => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
+    setFormPlaceholders(validate(formValues));
     setIsSubmit(true);
   };
 
@@ -75,7 +81,7 @@ const LoginPage = props => {
                 type="text"
                 className="username"
                 placeholder="Username"
-                value={formValues.username}
+                defaultValue={formValues.username}
                 onChange={handleChange}
               />
               </div>
@@ -85,7 +91,7 @@ const LoginPage = props => {
                 type="text"
                 className="password"
                 placeholder="Password"
-                value={formValues.password}
+                defaultValue={formValues.password}
                 onChange={handleChange}
               />
               </div>

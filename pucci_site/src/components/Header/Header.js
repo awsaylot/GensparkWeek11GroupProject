@@ -1,14 +1,20 @@
 import React from 'react'
+import Button from 'react-bootstrap/esm/Button';
 import "./Header.css";
 
 
-const Navigation = () => {
+const Navigation = props => {
   return (
     <div className="navigation">
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12">
-            <h1 className="title pucci-logo">P U C C I</h1>
+            <h1 className="title pucci-logo">P U C C I
+              <div className="btns">
+                <Button className='user-btn' onClick={props.onLoginClick}>Login</Button>
+                <Button className='user-btn' onClick={props.onRegisterClick}>Register</Button>
+              </div>
+            </h1>
             <nav>
               <ul className="nav nav-tabs">
                 <li className="nav-tabs-header">
@@ -50,10 +56,13 @@ const Navigation = () => {
   )
 }
 
-const Header = () => {
+const Header = props => {
   return (
     <div className="header-container">
-      <Navigation />
+      <Navigation 
+        onLoginClick={props.onLoginClick}
+        onRegisterClick={props.onRegisterClick}
+      />
     </div>
   )
 }

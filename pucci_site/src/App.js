@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import Modal from 'react-modal';
-import Wrapper from './components/Wrapper/Wrapper';
 import LoginPage from './components/Login Page/LoginPage';
 import RegisterPage from './components/Register Page/RegisterPage';
 import Home from './components/Home/Home';
@@ -59,10 +58,10 @@ function App() {
     <div className="App">
 
       <BrowserRouter>
-        <Header />
-
-        {/* <button onClick={toggleLogin}>Login</button>
-        <button onClick={toggleRegister}>Register</button>
+        <Header 
+          onLoginClick={toggleLogin}
+          onRegisterClick={toggleRegister}
+        />
 
         {isOpen &&
           <LoginPage
@@ -93,7 +92,7 @@ function App() {
               </div>
             }
           />
-        } */}
+        }
 
         <Home />
       </BrowserRouter>
