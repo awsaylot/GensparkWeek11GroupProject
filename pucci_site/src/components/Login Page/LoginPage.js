@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import Button from 'react-bootstrap/esm/Button';
-import RegisterPage from '../Register Page/RegisterPage';
 import "./LoginPage.css";
 
 const LoginPage = props => {
@@ -64,7 +63,7 @@ const LoginPage = props => {
         <div className="login-box">
 
           <div className="login-content">
-            <Button className="btn-close" onClick={props.handleClose} />
+            {/* <Button className="btn-close" onClick={props.handleClose} /> */}
 
             <div type="loginHeader">
               {props.content}
@@ -95,7 +94,9 @@ const LoginPage = props => {
 
             <input type="checkbox" /><span>Remember Me</span>
 
-            <Button className="login-btn" href="#" role="button" onClick={handleSubmit}>Login</Button>
+            <div>
+            <Button className="login-btn" onClick={handleSubmit}>Login</Button>
+            </div>
 
             <p>No existing account? <a href="#" onClick={props.onRegisterClick}>Register here</a></p>
 

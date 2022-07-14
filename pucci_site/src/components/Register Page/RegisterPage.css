@@ -1,34 +1,17 @@
 .errors {
     color: red;
   }
-/* .reg-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #999;
-    width: 100%;
-    height: 100vh;
-}
-  
+
 .reg-box {
-    position: relative;
-    width: 40%;
-    height: 560px;
-    background-color: #fff;
-    border: 1px solid #999;
+    width: 60%;
+    height: 75%;
+    background-color: #1b1b1b;
+    color: #e5dfd9;
+    border: 1px solid #1b1b1b;
     border-radius: 4px;
     margin: 20px auto;
     padding: 20px;
-    overflow: auto;
-}
-
-.btn-close {
-    cursor: pointer;
-    border: 1px solid #999;
-    border-radius: 50%;
-    position: fixed;
-    right: calc(30%);
-    top: 20px;
+    box-shadow: 0 0 75px #1b1b1b;
 }
 
 .register-btn {
@@ -37,39 +20,49 @@
     margin-left: 30%;
     margin-top: 4%;
     margin-bottom: 4%;
-    background-color: rgb(225, 0, 255);
     font-size: medium;
+    background-color: #0003;
+    border: 4px solid white;
+    font-size: medium;
+    font-family: monospace;
+    color: #e5dfd9;
 }
 
 div[type="regHeader"],div[type="userHeader"] {
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: #e5dfd9;
 }
 
 input[type="name"] {
-    width: 50%;
+    text-align: center;
+    width: 48%;
+    height:20px;
     display: inline-flex;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border-width: thin;
     padding: 5px;
+    margin-right: 10px;
 }
 
 input[type="text"] {
-    width: 100%;
-    display: block;
+    height:20px;
+    display: flex;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border-width: thin;
     padding: 5px;
-    margin-top: 2%;
-    margin-bottom: 2%;
 }
 
 input[type="checkbox"] {
     position: relative;
     margin-right: 5px;
     top: 2px;
-} */
+}
+
+.field {
+    height: 20px;
+    width: 100%;
+}
