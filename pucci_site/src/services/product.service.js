@@ -1,23 +1,16 @@
-import axios from "axios";
+import axios from './axios';
 
 class ProductService {
 
-    instance = axios.create({
-        baseURL: "http://localhost:8080/api",
-        headers: {
-            "Content-type": "application/json"
-        }
-    });
+    PRODUCTS_URL = '/products';
 
     getAllProducts() {
-        return axios({
-            method: 'get',
-            url: `api/products`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // }
-        }).then(function (response) {
-            console.log(response);
+        const response = axios.get(
+            this.PRODUCTS_URL,
+            { headers: { 'Content-Type': 'application/json' } }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
         }).catch(function (error) {
             console.log(error);
         });
@@ -26,7 +19,7 @@ class ProductService {
     getProductById(product_id) {
         return axios({
             method: 'get',
-            url: `api/products/${product_id}`,
+            url: `${this.baseURL}/${product_id}`,
             // headers: {
             //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
             // }
@@ -40,7 +33,7 @@ class ProductService {
     createProduct(product_name, product_price) {
         return axios({
             method: 'post',
-            url: `api/products`,
+            url: `${this.baseURL}`,
             // headers: {
             //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
             // },
@@ -54,7 +47,7 @@ class ProductService {
     updateProduct(product) {
         return axios({
             method: 'put',
-            url: `api/products`,
+            url: `${this.baseURL}`,
             // headers: {
             //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
             // },
@@ -69,7 +62,7 @@ class ProductService {
     deleteProductById(product_id) {
         return axios({
             method: 'delete',
-            url: `api/products/${product_id}`,
+            url: `${this.baseURL}/${product_id}`,
             // headers: {
             //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
             // }

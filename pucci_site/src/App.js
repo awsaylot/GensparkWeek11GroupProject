@@ -20,6 +20,14 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [register, setRegister] = useState(false);
 
+  // let products = [];
+  // let product1 = ProductService.createProduct("Blue Sweater", 400);
+  // let product2 = ProductService.createProduct("Blue Sweater", 400);
+  // products.push(product1);
+  // products.push(product2);
+
+  ProductService.getAllProducts();
+
   // const [products, setProducts] = useState([];
   //   const fetchProducts = async() => {
   //     const {data} = await commerce.products.list();
@@ -53,7 +61,7 @@ function App() {
       <BrowserRouter>
         <Header />
 
-        <button onClick={toggleLogin}>Login</button>
+        {/* <button onClick={toggleLogin}>Login</button>
         <button onClick={toggleRegister}>Register</button>
 
         {isOpen &&
@@ -85,7 +93,7 @@ function App() {
               </div>
             }
           />
-        }
+        } */}
 
         <Home />
       </BrowserRouter>
