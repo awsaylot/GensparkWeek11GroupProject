@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+import Modal from 'react-modal';
 import Wrapper from './components/Wrapper/Wrapper';
 import LoginPage from './components/Login Page/LoginPage';
 import RegisterPage from './components/Register Page/RegisterPage';
@@ -12,6 +13,7 @@ import MailService from './services/mail.service';
 import UserService from './services/user.service';
 import OrderService from './services/order.service';
 import ProductService from './services/product.service';
+Modal.setAppElement('#root');
 
 function App() {
 
@@ -40,6 +42,11 @@ function App() {
     setRegister(!register);
   }
 
+  const openRegisterPage = () => {
+    setIsOpen(false);
+    setRegister(true);
+  };
+
   return (
     <div className="App">
 
@@ -50,34 +57,35 @@ function App() {
         <button onClick={toggleRegister}>Register</button>
 
         {isOpen &&
-          <Wrapper>
-            <LoginPage
-              handleClose={toggleLogin}
-              content={
-                <div>
-                  <h2 style={{ fontWeight: 'bolder' }}>Sign In</h2>
-                </div>
-              }
-            />
-          </Wrapper>}
+          <LoginPage
+            onRegisterClick={openRegisterPage}
+            modalIsOpen={isOpen}
+            handleClose={toggleLogin}
+            content={
+              <div>
+                <h2 style={{ fontWeight: 'bolder' }}>Sign In</h2>
+              </div>
+            }
+          />
+        }
 
         {register &&
-          <Wrapper>
-            <RegisterPage
-              handleClose={toggleRegister}
-              content={
-                <div>
-                  <h2>New User</h2>
-                  <p>Personal Information</p>
-                </div>
-              }
-              content2={
-                <div>
-                  <p>Login Information</p>
-                </div>
-              }
-            />
-          </Wrapper>}
+          <RegisterPage
+            modalIsOpen={register}
+            handleClose={toggleRegister}
+            content={
+              <div>
+                <h2 style={{ fontWeight: 'bolder' }}>New User</h2>
+                <p>Personal Information</p>
+              </div>
+            }
+            content2={
+              <div>
+                <p>Login Information</p>
+              </div>
+            }
+          />
+        }
 
         <Home />
       </BrowserRouter>
