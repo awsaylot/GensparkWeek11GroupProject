@@ -8,14 +8,14 @@ const RegisterPage = props => {
 
     const modalPosition = React.useState('center');
     const modalSize = React.useState('medium');
-    const initValues = { username: "", password: "", password2: "", email: "", phone: "", firstName: "", lastName: "", tosCheckbox: false};
-    const initPlaceholders = { 
-        firstName: "First Name", 
-        lastName: "Last Name",
-        email: "Email", 
-        phone: "Phone Number", 
-        username: "Username", 
-        password: "Password", 
+    const initValues = { username: "", password: "", password2: "", email: "", phone: "", firstName: "", lastName: "", tosCheckbox: false };
+    const initPlaceholders = {
+        firstName: "First name",
+        lastName: "Last name",
+        email: "Email",
+        phone: "Phone number",
+        username: "Username",
+        password: "Password",
         password2: "Re-enter your password"
     };
     const [formValues, setFormValues] = useState(initValues);
@@ -100,127 +100,71 @@ const RegisterPage = props => {
         }
         // terms of service checkbox
         if (!values.tosCheckbox) {
-            errors.tosCheckbox = "You must accept the terms of service to continue."; 
+            errors.tosCheckbox = "You must accept the terms of service to continue.";
         }
         return errors;
     };
 
     return (
-        <div style={{ display: 'flex' }}>
-            <Modal className="reg-modal"
-                position={modalPosition}
-                size={modalSize}
-                isOpen={props.modalIsOpen}
-                onRequestClose={props.handleClose}
-            >
-                <div className="reg-page">
-                    <div className="reg-box">
+        <Modal className="reg-modal" position={modalPosition} size={modalSize} isOpen={props.modalIsOpen} onRequestClose={props.handleClose}>
+            <div className="reg-box">
+                <div className='reg-box-content'>
 
-                        {/* <Button className="btn-close" onClick={props.handleClose} /> */}
+                    {/* <Button className="btn-close" onClick={props.handleClose} /> */}
 
-                        <div type="regHeader">
-                            {props.content}
-                        </div>
+                    <div className="register-header-container">
+                        <h2 className="register-header">Register an account</h2>
+                    </div>
 
-                        <div className="fields">
-                            <input
-                                type="name"
-                                className="firstName"
-                                placeholder={formPlaceholders.firstName}
-                                defaultValue={formValues.firstName}
-                                onChange={handleChange}
-                            />
-
-                            <input
-                                type="name"
-                                className="lastName"
-                                placeholder={formPlaceholders.lastName}
-                                defaultValue={formValues.lastName}
-                                onChange={handleChange}
-                            />
+                    <div className="register-text-input-wrapper">
+                        <p className="personal-info-header">Personal information</p>
+                        <div className="field name-field">
+                            <input type="text" className="first-name-input" placeholder={formPlaceholders.firstName} defaultValue={formValues.firstName} onChange={handleChange} required />
+                            <input type="text" className="last-name-input" placeholder={formPlaceholders.lastName} defaultValue={formValues.lastName} onChange={handleChange} required />
                             <p className="errors">{formErrors.firstName}{formErrors.lastName}</p>
                         </div>
 
                         <div className="field">
-                            <input
-                                type="text"
-                                className="email"
-                                placeholder={formPlaceholders.email}
-                                defaultValue={formValues.email}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <p className="errors">{formErrors.email}</p>
-
-                        <div className="field">
-                            <input
-                                type="text"
-                                className="phone"
-                                placeholder={formPlaceholders.phone}
-                                defaultValue={formValues.phone}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <p className="errors">{formErrors.phone}</p>
-
-                        <div type="userHeader">
-                            {props.content2}
+                            <input type="text" className="email" placeholder={formPlaceholders.email} defaultValue={formValues.email} onChange={handleChange} required />
+                            <p className="errors">{formErrors.email}</p>
                         </div>
 
                         <div className="field">
-                            <input
-                                type="text"
-                                className="username"
-                                placeholder={formPlaceholders.username}
-                                defaultValue={formValues.username}
-                                onChange={handleChange}
-                            />
+                            <input type="text" className="phone" placeholder={formPlaceholders.phone} defaultValue={formValues.phone} onChange={handleChange} required />
+                            <p className="errors">{formErrors.phone}</p>
                         </div>
-                        <p className="errors">{formErrors.username}</p>
+
+                        <p className="login-info-header">Sign in information</p>
 
                         <div className="field">
-                            <input
-                                type="text"
-                                className="password"
-                                placeholder={formPlaceholders.password}
-                                defaultValue={formValues.password}
-                                onChange={handleChange}
-                            />
+                            <input type="text" className="username" placeholder={formPlaceholders.username} defaultValue={formValues.username} onChange={handleChange} required />
+                            <p className="errors">{formErrors.username}</p>
                         </div>
-                        <p className="errors">{formErrors.password}</p>
 
                         <div className="field">
-                            <input
-                                type="text"
-                                className="password"
-                                placeholder={formPlaceholders.password2}
-                                defaultValue={formValues.password2}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <p className="errors">{formErrors.password2}</p>
-
-                        <div>
-                            <input
-                                type="checkbox"
-                                className="tosCheckbox"
-                                onChange={handleChange}
-                            />
-                            <span>
-                                I accept
-                                <a
-                                    href="#"
-                                >Terms of Use 
-                                </a>
-                                <l className="errors"> {formErrors.tosCheckbox}</l>
-                                <Button className="register-btn" onClick={handleSubmit}>Submit</Button>
-                            </span>
+                            <input type="text" className="password" placeholder={formPlaceholders.password} defaultValue={formValues.password} onChange={handleChange} required />
+                            <p className="errors">{formErrors.password}</p>
                         </div>
 
+                        <div className="field">
+                            <input type="text" className="password" placeholder={formPlaceholders.password2} defaultValue={formValues.password2} onChange={handleChange} required />
+                            <p className="errors">{formErrors.password2}</p>
+                        </div>
+                    </div>
+
+                    <div className="register-checkbox-input-wrapper">
+                        <input type="checkbox" className="tosCheckbox" onChange={handleChange} required />
+                        <span>I accept <a href="#"> Terms of Use </a></span>
+                        {/* Instead of an error here, disable the submit button. */}
+                        <p className="errors"> {formErrors.tosCheckbox}</p>
+                    </div>
+
+                    <div className="register-btn-wrapper">
+                        <Button className="register-btn" onClick={handleSubmit}>Register</Button>
                     </div>
                 </div>
-            </Modal>
-        </div>
+            </div>
+        </Modal>
     )
 }
 

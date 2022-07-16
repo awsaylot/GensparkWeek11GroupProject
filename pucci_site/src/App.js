@@ -68,11 +68,6 @@ function App() {
             onRegisterClick={openRegisterPage}
             modalIsOpen={isOpen}
             handleClose={toggleLogin}
-            content={
-              <div>
-                <h2 style={{ fontWeight: 'bolder' }}>Sign In</h2>
-              </div>
-            }
           />
         }
 
@@ -80,24 +75,11 @@ function App() {
           <RegisterPage
             modalIsOpen={register}
             handleClose={toggleRegister}
-            content={
-              <div>
-                <h2 style={{ fontWeight: 'bolder' }}>New User</h2>
-                <p>Personal Information</p>
-              </div>
-            }
-            content2={
-              <div>
-                <p>Login Information</p>
-              </div>
-            }
           />
         }
 
         <Home />
       </BrowserRouter>
-
-
       <Footer />
     </div>
   );

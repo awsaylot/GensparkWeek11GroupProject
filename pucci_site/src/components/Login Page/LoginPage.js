@@ -47,7 +47,7 @@ const LoginPage = props => {
       errors.password = "Password is required";
     }
     if (!userRegex.test(values.username)) {
-      errors.username = "Username must only contain Uppercase, Lowercase, underscores, periods, and dashes.";
+      errors.username = "Username can only contain alphanumeric characters, dashes, periods, and underscores.";
     }
     if (values.password < 8) {
       errors.password = "Password must be at least 8 characters long.";
@@ -59,7 +59,7 @@ const LoginPage = props => {
   };
 
   return (
-    <div style={{display: 'flex'}}>
+    <div style={{ display: 'flex' }}>
       <Modal className="login-modal"
         size={modalSize}
         position={modalPosition}
@@ -71,45 +71,35 @@ const LoginPage = props => {
           <div className="login-content">
             {/* <Button className="btn-close" onClick={props.handleClose} /> */}
 
-            <div type="loginHeader">
-              {props.content}
+            <div className='login-header-container'>
+              <h2 className='login-header'> Sign In</h2>
             </div>
 
-            <div className="text-input-wrapper">
+            <div className="login-text-input-wrapper">
+
               <div className="usernameField">
-              <input
-                type="text"
-                className="username"
-                placeholder="Username"
-                defaultValue={formValues.username}
-                onChange={handleChange}
-              />
+                <input type="text" className="username" placeholder="Username" defaultValue={formValues.username} onChange={handleChange} required />
+                <p className="errors">{formErrors.username}</p>
               </div>
-              <p className="errors">{formErrors.username}</p>
+
               <div className="passwordField">
-              <input
-                type="text"
-                className="password"
-                placeholder="Password"
-                defaultValue={formValues.password}
-                onChange={handleChange}
-              />
+                <input type="text" className="password" placeholder="Password" defaultValue={formValues.password} onChange={handleChange} required />
+                <p className="errors">{formErrors.password}</p>
               </div>
-              <p className="errors">{formErrors.password}</p>
             </div>
 
-            <input type="checkbox" /><span>Remember Me</span>
-
-            <div>
-            <Button className="login-btn" onClick={handleSubmit}>Login</Button>
+            <div className="login-checkbox-input-wrapper">
+              <input type="checkbox" /><span>Remember me</span>
             </div>
 
-            <p>No existing account? <a href="#" onClick={props.onRegisterClick}>Register here</a></p>
+            <div className="login-btn-wrapper">
+              <Button className="login-btn" onClick={handleSubmit}>Sign in</Button>
+            </div>
+
+            <p className="no-account-message">No existing account? <a href="#" onClick={props.onRegisterClick}>Register here</a></p>
 
           </div>
         </div>
-
-        <div className="sideImage" />
       </Modal>
     </div>
   )
