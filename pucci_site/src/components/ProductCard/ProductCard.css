@@ -1,10 +1,17 @@
 .card {
     margin-bottom: 1rem;
+    z-index: 0;
 }
 
-.card button {
-    opacity: 0;
+.empty-heart-icon {
+    z-index: 1;
+    font-size: 35px;
+    color: black;
+    position: relative;
+    top: 10%;
+    left: 40%;
 }
-.card:hover button {
-     opacity: 1;
+
+.empty-heart-icon:hover {
+    color: red;
 }

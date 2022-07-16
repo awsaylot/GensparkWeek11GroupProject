@@ -122,8 +122,9 @@ const RegisterPage = props => {
                             <p className="personal-info-header">Personal information</p>
                             <div className="field name-field">
                                 <input type="text" className="first-name-input" placeholder={formPlaceholders.firstName} defaultValue={formValues.firstName} onChange={handleChange} required />
+                                <p className="errors">{formErrors.firstName}</p>
                                 <input type="text" className="last-name-input" placeholder={formPlaceholders.lastName} defaultValue={formValues.lastName} onChange={handleChange} required />
-                                <p className="errors">{formErrors.firstName}{formErrors.lastName}</p>
+                                <p className="errors">{formErrors.lastName}</p>
                             </div>
 
                             <div className="field">

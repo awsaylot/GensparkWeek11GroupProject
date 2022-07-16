@@ -1,5 +1,7 @@
 import React from 'react'
-import Button from 'react-bootstrap/esm/Button';
+import { IoMdHeartEmpty } from "react-icons/io";
+import {BsBag} from "react-icons/bs";
+import {BiSearch} from "react-icons/bi";
 import "./Header.css";
 
 
@@ -9,12 +11,14 @@ const Navigation = props => {
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12">
-            <h1 className="title pucci-logo">P U C C I
-              <div className="btns">
-                <Button className='user-btn' onClick={props.onLoginClick}>Login</Button>
-                <Button className='user-btn' onClick={props.onRegisterClick}>Register</Button>
+            <h1 className="title pucci-logo">P U C C I </h1>
+              <div className="nav-user-btn-container">
+                <button className='nav-login-btn' onClick={props.onLoginClick}>Sign in</button>
+                <button className='nav-favorites-btn'><IoMdHeartEmpty className="nav-favorites-btn-icon"/></button>
+                <button className='nav-bag-btn'><BsBag className="nav-bag-btn-icon"/>Bag</button>
+                <button className='nav-search-btn'><BiSearch className="nav-search-btn-icon"/></button>
+                {/* <button className='nav-register-btn' onClick={props.onRegisterClick}>Create an account</button> */}
               </div>
-            </h1>
             <nav>
               <ul className="nav nav-tabs">
                 <li className="nav-tabs-header">
