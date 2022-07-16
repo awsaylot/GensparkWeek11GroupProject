@@ -6,7 +6,7 @@
     border: 1px solid rgb(190, 190, 190);
     border-radius: 4px;
     margin: 0 auto;
-    margin-top: 6%;
+    margin-top: 5%;
     padding: 20px;
     box-shadow: 0 0 75px #1b1b1b;
     font-family: OpenSans-Regular,sans-serif;
@@ -19,7 +19,7 @@
 
 .register-header-container {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .personal-info-container, .login-info-container {
