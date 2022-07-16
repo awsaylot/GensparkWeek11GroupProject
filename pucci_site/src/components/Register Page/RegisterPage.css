@@ -6,9 +6,10 @@
     border: 1px solid rgb(190, 190, 190);
     border-radius: 4px;
     margin: 0 auto;
-    margin-top: 5%;
+    margin-top: 6%;
     padding: 20px;
     box-shadow: 0 0 75px #1b1b1b;
+    font-family: OpenSans-Regular,sans-serif;
 }
 
 .reg-content {
@@ -18,11 +19,16 @@
 
 .register-header-container {
     text-align: center;
+    margin-top: 10px;
+}
+
+.personal-info-container, .login-info-container {
+    margin-top: 20px;
 }
 
 .login-info-header , .personal-info-header {
     color: black;
-    font-family: OpenSans-Regular,sans-serif;
+    margin-bottom: 5px;
 }
 
 .register-text-input-wrapper {
@@ -57,7 +63,7 @@
 
 .register-checkbox-input-wrapper {
     text-align: center;
-    margin-top: px;
+    margin-top: 15px;
 }
 
 input[type="checkbox"] {

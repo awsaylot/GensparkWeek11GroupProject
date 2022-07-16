@@ -117,38 +117,44 @@ const RegisterPage = props => {
                     </div>
 
                     <div className="register-text-input-wrapper">
-                        <p className="personal-info-header">Personal information</p>
-                        <div className="field name-field">
-                            <input type="text" className="first-name-input" placeholder={formPlaceholders.firstName} defaultValue={formValues.firstName} onChange={handleChange} required />
-                            <input type="text" className="last-name-input" placeholder={formPlaceholders.lastName} defaultValue={formValues.lastName} onChange={handleChange} required />
-                            <p className="errors">{formErrors.firstName}{formErrors.lastName}</p>
+
+                        <div className='personal-info-container'>
+                            <p className="personal-info-header">Personal information</p>
+                            <div className="field name-field">
+                                <input type="text" className="first-name-input" placeholder={formPlaceholders.firstName} defaultValue={formValues.firstName} onChange={handleChange} required />
+                                <input type="text" className="last-name-input" placeholder={formPlaceholders.lastName} defaultValue={formValues.lastName} onChange={handleChange} required />
+                                <p className="errors">{formErrors.firstName}{formErrors.lastName}</p>
+                            </div>
+
+                            <div className="field">
+                                <input type="text" className="email" placeholder={formPlaceholders.email} defaultValue={formValues.email} onChange={handleChange} required />
+                                <p className="errors">{formErrors.email}</p>
+                            </div>
+
+                            <div className="field">
+                                <input type="text" className="phone" placeholder={formPlaceholders.phone} defaultValue={formValues.phone} onChange={handleChange} required />
+                                <p className="errors">{formErrors.phone}</p>
+                            </div>
                         </div>
 
-                        <div className="field">
-                            <input type="text" className="email" placeholder={formPlaceholders.email} defaultValue={formValues.email} onChange={handleChange} required />
-                            <p className="errors">{formErrors.email}</p>
-                        </div>
+                        <div className="login-info-container">
+                            <p className="login-info-header">Sign in information</p>
 
-                        <div className="field">
-                            <input type="text" className="phone" placeholder={formPlaceholders.phone} defaultValue={formValues.phone} onChange={handleChange} required />
-                            <p className="errors">{formErrors.phone}</p>
-                        </div>
+                            <div className="field">
+                                <input type="text" className="username" placeholder={formPlaceholders.username} defaultValue={formValues.username} onChange={handleChange} required />
+                                <p className="errors">{formErrors.username}</p>
+                            </div>
 
-                        <p className="login-info-header">Sign in information</p>
+                            <div className="field">
+                                <input type="text" className="password" placeholder={formPlaceholders.password} defaultValue={formValues.password} onChange={handleChange} required />
+                                <p className="errors">{formErrors.password}</p>
+                            </div>
 
-                        <div className="field">
-                            <input type="text" className="username" placeholder={formPlaceholders.username} defaultValue={formValues.username} onChange={handleChange} required />
-                            <p className="errors">{formErrors.username}</p>
-                        </div>
+                            <div className="field">
+                                <input type="text" className="password" placeholder={formPlaceholders.password2} defaultValue={formValues.password2} onChange={handleChange} required />
+                                <p className="errors">{formErrors.password2}</p>
+                            </div>
 
-                        <div className="field">
-                            <input type="text" className="password" placeholder={formPlaceholders.password} defaultValue={formValues.password} onChange={handleChange} required />
-                            <p className="errors">{formErrors.password}</p>
-                        </div>
-
-                        <div className="field">
-                            <input type="text" className="password" placeholder={formPlaceholders.password2} defaultValue={formValues.password2} onChange={handleChange} required />
-                            <p className="errors">{formErrors.password2}</p>
                         </div>
                     </div>
 
