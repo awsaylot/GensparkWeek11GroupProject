@@ -14,7 +14,7 @@ public class MailSenderService implements MailSenderServiceInterface {
     @Override
     public void sendMail(String toEmail, String subject, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("pucchi-noreply@gmail.com");
+        message.setFrom("pucchio.noreply@gmail.com");
         message.setTo(toEmail);
         message.setSubject(subject);
         message.setText(body);
