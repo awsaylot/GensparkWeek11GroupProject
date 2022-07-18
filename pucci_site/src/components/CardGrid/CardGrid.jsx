@@ -10,6 +10,9 @@ const products = [
     {id: 3, title: "Sunglasses", description: "Fancy sungladsses"},
     {id: 4, title: "Sunglasses", description: "Fancy sungladsses"},
     {id: 5, title: "Sunglasses", description: "Fancy sungladsses"},
+    {id: 6, title: "Sunglasses", description: "Fancy sungladsses"},
+    {id: 7, title: "Sunglasses", description: "Fancy sungladsses"},
+    {id: 8, title: "Sunglasses", description: "Fancy sungladsses"},
 ];
 
 function CardGrid() {

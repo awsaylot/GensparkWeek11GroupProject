@@ -6,9 +6,9 @@ import CarouselFade from '../Carousel/Carousel';
 const Home = () => {
   return (
     <div className="home-container">
-      <div className="hero-image">
+      {/* <div className="hero-image">
         <h1 className="hero-title">NEW IN: PET COLLECTION</h1>
-      </div>
+      </div> */}
 
       <div className="grid-nav-container">
         <p> NEW IN | PET COLLECTION</p>
