@@ -1,81 +1,88 @@
-import axios from "axios";
+import axios from './axios';
 
 class OrderService {
-    
-    instance = axios.create({
-        baseURL: "http://localhost:8080/api",
-        headers: {
-            "Content-type": "application/json"
-        }
-    });
+
+    ORDERS_URL = '/orders';
 
     getAllOrders() {
-        return axios({
-            method: 'get',
-            url: `/orders`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // }
-        }).then(function (response) {
-            console.log(response);
+        return axios.get(
+            this.ORDERS_URL,
+            { headers: { 'Content-Type': 'application/json' } }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
         }).catch(function (error) {
             console.log(error);
         });
     };
 
     getOrderById(order_id) {
-        return axios({
-            method: 'get',
-            url: `/orders/${order_id}`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // }
-        }).then(function (response) {
-            console.log(response);
+        const url = this.ORDERS_URL + '/' + order_id;
+
+        return axios.get(
+            url,
+            { headers: { 'Content-Type': 'application/json' } }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
         }).catch(function (error) {
+            console.log("Order with id " + order_id + " not found");
             console.log(error);
         });
     };
 
     createOrder(purchase_list, purchase_total) {
-        return axios({
-            method: 'post',
-            url: `/orders`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // },
-            data: {
-                "purchase_list": purchase_list,
-                "purchase_total": purchase_total
+        return axios.post(
+            this.ORDERS_URL,
+            {
+                headers: { 'Content-Type': 'application/json' },
+                data:
+                {
+                    purchase_list: purchase_list,
+                    purchase_total: purchase_total
+                }
+
             }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
+        }).catch(function (error) {
+            console.log(error);
         });
     }
 
     updateOrder(order) {
-        return axios({
-            method: 'put',
-            url: `/orders`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // },
-            data: {
-                "order_id": order.order_id,
-                "purchase_list": order.purchase_list,
-                "purchase_total": order.purchase_total
+        return axios.put(
+            this.PRODUCTS_URL,
+            {
+                headers: { 'Content-Type': 'application/json' },
+                data:
+                {
+                    order_id: order.order_id,
+                    purchase_list: order.purchase_list,
+                    purchase_total: order.purchase_total
+                }
+
             }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
+        }).catch(function (error) {
+            console.log(error);
         });
     };
 
     deleteOrderById(order_id) {
-        return axios({
-            method: 'delete',
-            url: `/orders/${order_id}`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // }
-        }).then(function (response) {
-            console.log(response);
+        const url = this.ORDERS_URL + '/' + order_id;
+
+        return axios.delete(
+            url,
+            { headers: { 'Content-Type': 'application/json' } }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
         }).catch(function (error) {
+            console.log("Order with id " + order_id + " not found");
             console.log(error);
         });
     };
@@ -85,31 +92,3 @@ export default new OrderService();
 
 
 // documentation found here: https://www.npmjs.com/package/axios
-// if this doesn't work, use http-common. can also try removing quotes around the data
-// code found here https://www.bezkoder.com/react-spring-boot-crud/#:~:text=Architecture%20of%20Spring%20Boot%20React%20CRUD%20example%20This,Responses%20using%20axios%2C%20shows%20data%20on%20the%20components.
-
-// import http from "../http-common";
-// class TutorialDataService {
-//   getAll() {
-//     return http.get("/tutorials");
-//   }
-//   get(id) {
-//     return http.get(`/tutorials/${id}`);
-//   }
-//   create(data) {
-//     return http.post("/tutorials", data);
-//   }
-//   update(id, data) {
-//     return http.put(`/tutorials/${id}`, data);
-//   }
-//   delete(id) {
-//     return http.delete(`/tutorials/${id}`);
-//   }
-//   deleteAll() {
-//     return http.delete(`/tutorials`);
-//   }
-//   findByTitle(title) {
-//     return http.get(`/tutorials?title=${title}`);
-//   }
-// }
-// export default new TutorialDataService();

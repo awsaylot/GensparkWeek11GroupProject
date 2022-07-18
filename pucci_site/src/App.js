@@ -19,27 +19,20 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [register, setRegister] = useState(false);
 
-  // let products = [];
-  // let product1 = ProductService.createProduct("Blue Sweater", 400);
-  // let product2 = ProductService.createProduct("Blue Sweater", 400);
-  // products.push(product1);
-  // products.push(product2);
-
   ProductService.getAllProducts();
 
-  // const [products, setProducts] = useState([];
-  //   const fetchProducts = async() => {
-  //     const {data} = await commerce.products.list();
+  const product = {
+    "name": "Black rattan lounger",
+    "price":"400"
+  }
 
-  //     setProducts(data);
+  ProductService.createProduct(product);
 
-  //   }
 
-  //   useEffect(() => {
-  //     fetchProducts();
-  //   }, []);
+  ProductService.getProductById(3);
 
-  //   console.log(products);
+  ProductService.deleteProductById(1);
+
 
   const toggleLogin = () => {
     setIsOpen(!isOpen);

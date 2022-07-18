@@ -2,88 +2,94 @@ import axios from "axios";
 
 class UserService {
 
-    instance = axios.create({
-        baseURL: "http://localhost:8080/api",
-        headers: {
-            "Content-type": "application/json"
-        }
-    });
+    USERS_URL = '/users';
 
     getAllUsers() {
-        return axios({
-            method: 'get',
-            url: `api/users/`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // }
-        }).then(function (response) {
-            console.log(response);
+        return axios.get(
+            this.USERS_URL,
+            { headers: { 'Content-Type': 'application/json' } }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
         }).catch(function (error) {
             console.log(error);
         });
     }
 
     getUserById(user_id) {
-        return axios({
-            method: 'get',
-            url: `api/users/${user_id}`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // }
-        }).then(function (response) {
-            console.log(response);
+        const url = this.USERS_URL + '/' + user_id;
+
+        return axios.get(
+            url,
+            { headers: { 'Content-Type': 'application/json' } }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
         }).catch(function (error) {
+            console.log("User with id " + user_id + " not found");
             console.log(error);
         });
     }
 
     createUser(sign_in_type, name, username, password, email, phone) {
-        return axios({
-            method: 'post',
-            url: `api/users`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // },
-            data: {
-                "sign_in_type": sign_in_type,
-                "name": name,
-                "username": username,
-                "password": password,
-                "email": email,
-                "phone": phone
+        return axios.post(
+            this.USERS_URL,
+            {
+                headers: { 'Content-Type': 'application/json' },
+                data:
+                {
+                    sign_in_type: sign_in_type,
+                    name: name,
+                    username: username,
+                    password: password,
+                    email: email,
+                    phone: phone
+                }
+
             }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
+        }).catch(function (error) {
+            console.log(error);
         });
     }
 
     updateUser(user) {
-        return axios({
-            method: 'put',
-            url: `api/users`,
-            headers: {
-                Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            },
-            data: {
-                "user_id": user.user_id,
-                "sign_in_type": user.sign_in_type,
-                "name": user.name,
-                "username": user.username,
-                "password": user.password,
-                "email": user.email,
-                "phone": user.phone
+        return axios.put(
+            this.USERS_URL,
+            {
+                headers: { 'Content-Type': 'application/json' },
+                data:
+                {
+                    user_id: user.user_id,
+                    sign_in_type: user.sign_in_type,
+                    name: user.name,
+                    username: user.username,
+                    password: user.password,
+                    email: user.email,
+                    phone: user.phone
+                }
             }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
+        }).catch(function (error) {
+            console.log(error);
         });
     }
 
     deleteUserById(user_id) {
-        return axios({
-            method: 'delete',
-            url: `api/users/${user_id}`,
-            // headers: {
-            //     Authorization: `Bearer ${process.env.CLIENT_TOKEN}`
-            // }
-        }).then(function (response) {
-            console.log(response);
+        const url = this.USERS_URL + '/' + user_id;
+
+        return axios.delete(
+            url,
+            { headers: { 'Content-Type': 'application/json' } }
+        ).then(function (response) {
+            console.log(response)
+            return response.data;
         }).catch(function (error) {
+            console.log("User with id " + user_id + " not found");
             console.log(error);
         });
     }
