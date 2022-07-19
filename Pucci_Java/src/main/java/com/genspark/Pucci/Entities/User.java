@@ -31,11 +31,11 @@ public class User {
     @JoinColumn(name="purchase_list")
     private List<Order> completed_orders;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name="tbl_carts",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "product_id"))
-//    private Set<Product> cart = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="tbl_carts",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Set<Product> cart = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "tbl_user_roles",
@@ -135,12 +135,20 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-//
-//    public List<Order> getCompleted_orders() {
-//        return completed_orders;
-//    }
-//
-//    public void setCompleted_orders(List<Order> completed_orders) {
-//        this.completed_orders = completed_orders;
-//    }
+
+    public List<Order> getCompleted_orders() {
+        return completed_orders;
+    }
+
+    public void setCompleted_orders(List<Order> completed_orders) {
+        this.completed_orders = completed_orders;
+    }
+
+    public Set<Product> getCart() {
+        return cart;
+    }
+
+    public void setCart(Set<Product> cart) {
+        this.cart = cart;
+    }
 }
