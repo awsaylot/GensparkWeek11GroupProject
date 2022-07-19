@@ -4,14 +4,12 @@ package com.genspark.Pucci.Controllers;
 import com.genspark.Pucci.Entities.Order;
 import com.genspark.Pucci.Entities.Product;
 import com.genspark.Pucci.Entities.User;
-import com.genspark.Pucci.Services.MailSenderService;
-import com.genspark.Pucci.Services.OrderServiceInterface;
-import com.genspark.Pucci.Services.ProductServiceInterface;
-import com.genspark.Pucci.Services.UserServiceInterface;
+import com.genspark.Pucci.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class Controller {
@@ -110,5 +108,4 @@ public class Controller {
     public String deleteUser(@PathVariable String user_id) {
         return this.userService.deleteUser(Integer.parseInt(user_id));
     }
-
 }
