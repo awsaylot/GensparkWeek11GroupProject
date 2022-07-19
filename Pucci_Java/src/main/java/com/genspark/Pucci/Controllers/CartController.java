@@ -8,7 +8,6 @@ import com.genspark.Pucci.Payload.request.cart.AddCartRequest;
 import com.genspark.Pucci.Payload.request.cart.RemoveProduct;
 import com.genspark.Pucci.Payload.request.cart.UpdateQuantityRequest;
 import com.genspark.Pucci.Services.CartServiceInterface;
-import com.genspark.Pucci.Services.ProductServiceInterface;
 import com.genspark.Pucci.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -45,15 +43,8 @@ public class CartController {
 
     @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> addToCart(@Valid @RequestBody AddCartRequest addCartRequest, @RequestHeader("authorization") String authHeader) {
-        User user = this.getUserFromHeader(authHeader);
-        Set<Product> currentCart = user.getCart();
-        if (currentCart == null) {
-            currentCart = new HashSet<>();
-        }
-        currentCart.add(productDao.findById(Integer.parseInt(addCartRequest.getProduct_id())).orElse(null));
-        user.setCart(currentCart);
-        userDao.save(user);
-        return new ResponseEntity<String>("Added to cart", HttpStatus.OK);
+        Product product = cartService.addToCart(this.getUserFromHeader(authHeader), addCartRequest.getProduct_id());
+        return new ResponseEntity<String>(String.format("Added %s to cart", product.getName()), HttpStatus.OK);
     }
 
     @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
