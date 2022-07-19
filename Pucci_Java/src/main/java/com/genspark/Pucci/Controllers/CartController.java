@@ -16,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -36,19 +37,22 @@ public class CartController {
 
     @GetMapping()
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<String> getCart(@RequestHeader("authorization") String authHeader) {
+    public List<Product> getCart(@RequestHeader("authorization") String authHeader) {
         User user = this.getUserFromHeader(authHeader);
-        return new ResponseEntity<String>(String.format(user.getEmail()), HttpStatus.OK);
+        List<Product> cart = cartService.getCart(user);
+        return cart;
     }
 
     @PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<String> addToCart(@Valid @RequestBody AddCartRequest addCartRequest, @RequestHeader("authorization") String authHeader) {
+    public Product addToCart(@Valid @RequestBody AddCartRequest addCartRequest, @RequestHeader("authorization") String authHeader) {
         Product product = cartService.addToCart(this.getUserFromHeader(authHeader), addCartRequest.getProduct_id());
-        return new ResponseEntity<String>(String.format("Added %s to cart", product.getName()), HttpStatus.OK);
+        return product;
     }
 
     @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<String> updateQuantity(@Valid @RequestBody UpdateQuantityRequest updateQuantityRequest) {
+    public ResponseEntity<String> updateQuantity(@Valid @RequestBody UpdateQuantityRequest updateQuantityRequest, @RequestHeader("authorization") String authHeader) {
+        User user = this.getUserFromHeader(authHeader);
+        cartService.changeQuantity(user, Integer.parseInt(updateQuantityRequest.getProduct_id()), Integer.parseInt(updateQuantityRequest.getQuantity()));
         return new ResponseEntity<String>("Updated quantity", HttpStatus.OK);
     }
 

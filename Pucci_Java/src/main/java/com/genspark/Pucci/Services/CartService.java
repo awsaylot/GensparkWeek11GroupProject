@@ -1,14 +1,16 @@
 package com.genspark.Pucci.Services;
 
+import com.genspark.Pucci.Daos.CartDao;
 import com.genspark.Pucci.Daos.ProductDao;
 import com.genspark.Pucci.Daos.UserDao;
+import com.genspark.Pucci.Entities.Cart;
 import com.genspark.Pucci.Entities.Product;
 import com.genspark.Pucci.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CartService implements CartServiceInterface{
@@ -17,11 +19,14 @@ public class CartService implements CartServiceInterface{
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private CartDao cartDao;
+
     @Override
     public Product addToCart(User user, String product_id) {
-        Set<Product> currentCart = user.getCart();
+        List<Product> currentCart = user.getCart();
         if (currentCart == null) {
-            currentCart = new HashSet<>();
+            currentCart = new ArrayList<>();
         }
         Product productToAdd = productDao.findById(Integer.parseInt(product_id)).orElse(null);
         if (productToAdd != null) {
@@ -38,13 +43,21 @@ public class CartService implements CartServiceInterface{
     }
 
     @Override
-    public void changeQuantity(User user, int product_id, int quantity) {
-        System.out.println(product_id + " " + quantity);
+    public void changeQuantity(User user, int product_id, int quantityToAdd) {
+        int productQuantity = cartDao.getProductQuantity(user.getUser_id(), product_id);
+        System.out.println(productQuantity);
+        System.out.println(productQuantity + quantityToAdd);
+//        Session session;
+//        String getSql = String.format("SELECT quantity FROM tbl_carts WHERE user_id = %s AND product_id = %s");
+//        SqlQuery query = session.createSQLQueary(getSql);
     }
 
     @Override
-    public Set<Product> getCart(User user) {
-        System.out.println(user);
-        return null;
+    public List<Product> getCart(User user) {
+        List<Product> currentCart = user.getCart();
+        if (currentCart == null) {
+            currentCart = new ArrayList<>();
+        }
+        return currentCart;
     }
 }

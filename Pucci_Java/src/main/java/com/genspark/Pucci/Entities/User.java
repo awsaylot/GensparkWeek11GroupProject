@@ -1,6 +1,7 @@
 package com.genspark.Pucci.Entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,8 +35,9 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="tbl_carts",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> cart = new HashSet<>();
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
+    )
+    private List<Product> cart = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "tbl_user_roles",
@@ -144,11 +146,11 @@ public class User {
         this.completed_orders = completed_orders;
     }
 
-    public Set<Product> getCart() {
+    public List<Product> getCart() {
         return cart;
     }
 
-    public void setCart(Set<Product> cart) {
+    public void setCart(List<Product> cart) {
         this.cart = cart;
     }
 }

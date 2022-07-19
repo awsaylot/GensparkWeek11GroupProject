@@ -1,5 +1,6 @@
 package com.genspark.Pucci.Controllers;
 
+import com.genspark.Pucci.AsyncUtils.Email;
 import com.genspark.Pucci.Daos.UserDao;
 import com.genspark.Pucci.Entities.ERole;
 import com.genspark.Pucci.Entities.Role;
@@ -18,6 +19,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -38,6 +40,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
+@EnableAsync
 public class AuthController {
   @Autowired
   AuthenticationManager authenticationManager;
@@ -58,7 +61,7 @@ public class AuthController {
   MessageSource messages;
 
   @Autowired
-  JavaMailSender mailSender;
+  Email email;
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -135,12 +138,12 @@ public class AuthController {
 
     String randomCode = RandomString.make(64);
     user.setVerificationCode(randomCode);
-    user.setEnabled(false);
+    user.setEnabled(true);
 
 
     user.setRoles(roles);
     userDao.save(user);
-    sendVerificationEmail(user, "http://localhost:8080/api/auth");
+    email.sendVerificationEmail(user, "http://localhost:8080/api/auth");
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
@@ -165,30 +168,5 @@ public class AuthController {
       userDao.save(user);
       return true;
     }
-  }
-
-  private void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException {
-    String toAddress = user.getEmail();
-    String fromAddress = "admin@webchat.com";
-    String senderName = "Webchat";
-    String subject = "Please verify registration";
-    String content = "Dear [[name]],<br>"
-            + "Please click the link below to verify your registration:<br>"
-            + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
-            + "Thank you,<br>"
-            + "Webchat";
-
-    MimeMessage message = mailSender.createMimeMessage();
-    MimeMessageHelper helper = new MimeMessageHelper(message);
-
-    helper.setFrom(fromAddress, senderName);
-    helper.setTo(toAddress);
-    helper.setSubject(subject);
-
-    content = content.replace("[[name]]", user.getUsername());
-    String verifyURL = siteURL + "/verify?code=" + user.getVerificationCode();
-    content = content.replace("[[URL]]", verifyURL);
-    helper.setText(content, true);
-    mailSender.send(message);
   }
 }
