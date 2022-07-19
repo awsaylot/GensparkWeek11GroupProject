@@ -1,7 +1,9 @@
 package com.genspark.Pucci.Entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="tbl_users")
@@ -23,9 +25,49 @@ public class User {
 
     private String phone;
 
+    private boolean enabled;
+
     @OneToMany(cascade = CascadeType.ALL, targetEntity = Order.class)
     @JoinColumn(name="purchase_list")
     private List<Order> completed_orders;
+
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name="tbl_carts",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "product_id"))
+//    private Set<Product> cart = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(  name = "tbl_user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    private String verificationCode;
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public User(){}
 
@@ -93,12 +135,12 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public List<Order> getCompleted_orders() {
-        return completed_orders;
-    }
-
-    public void setCompleted_orders(List<Order> completed_orders) {
-        this.completed_orders = completed_orders;
-    }
+//
+//    public List<Order> getCompleted_orders() {
+//        return completed_orders;
+//    }
+//
+//    public void setCompleted_orders(List<Order> completed_orders) {
+//        this.completed_orders = completed_orders;
+//    }
 }
