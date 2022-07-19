@@ -1,14 +1,14 @@
 package com.genspark.Pucci.Controllers;
 
+import com.genspark.Pucci.Daos.UserDao;
 import com.genspark.Pucci.Entities.ERole;
 import com.genspark.Pucci.Entities.Role;
 import com.genspark.Pucci.Entities.User;
-import com.genspark.Pucci.Payload.request.LoginRequest;
-import com.genspark.Pucci.Payload.request.SignupRequest;
+import com.genspark.Pucci.Payload.request.auth.LoginRequest;
+import com.genspark.Pucci.Payload.request.auth.SignupRequest;
 import com.genspark.Pucci.Payload.response.JwtResponse;
 import com.genspark.Pucci.Payload.response.MessageResponse;
-import com.genspark.Pucci.Repository.RoleRepository;
-import com.genspark.Pucci.Repository.UserRepository;
+import com.genspark.Pucci.Daos.RoleDao;
 import com.genspark.Pucci.security.jwt.JwtUtils;
 import com.genspark.Pucci.security.services.UserDetailsImpl;
 import net.bytebuddy.utility.RandomString;
@@ -43,10 +43,10 @@ public class AuthController {
   AuthenticationManager authenticationManager;
 
   @Autowired
-  UserRepository userRepository;
+  UserDao userDao;
 
   @Autowired
-  RoleRepository roleRepository;
+  RoleDao roleDao;
 
   @Autowired
   PasswordEncoder encoder;
@@ -83,13 +83,13 @@ public class AuthController {
 
   @PostMapping("/signup")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) throws MessagingException, UnsupportedEncodingException {
-    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+    if (userDao.existsByUsername(signUpRequest.getUsername())) {
       return ResponseEntity
           .badRequest()
           .body(new MessageResponse("Error: Username is already taken!"));
     }
 
-    if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+    if (userDao.existsByEmail(signUpRequest.getEmail())) {
       return ResponseEntity
           .badRequest()
           .body(new MessageResponse("Error: Email is already in use!"));
@@ -108,7 +108,7 @@ public class AuthController {
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
 
-    Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+    Role userRole = roleDao.findByName(ERole.ROLE_USER)
             .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
     roles.add(userRole);
 
@@ -139,7 +139,7 @@ public class AuthController {
 
 
     user.setRoles(roles);
-    userRepository.save(user);
+    userDao.save(user);
     sendVerificationEmail(user, "http://localhost:8080/api/auth");
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
@@ -155,17 +155,18 @@ public class AuthController {
   }
 
   public boolean verify(String verificationCode) {
-    User user = userRepository.findByVerificationCode(verificationCode)
+    User user = userDao.findByVerificationCode(verificationCode)
             .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
     if (user == null || user.isEnabled()) {
       return false;
     } else {
       user.setVerificationCode(null);
       user.setEnabled(true);
-      userRepository.save(user);
+      userDao.save(user);
       return true;
     }
   }
+
   private void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException {
     String toAddress = user.getEmail();
     String fromAddress = "admin@webchat.com";

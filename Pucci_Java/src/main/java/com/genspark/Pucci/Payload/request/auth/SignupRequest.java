@@ -1,4 +1,4 @@
-package com.genspark.Pucci.Payload.request;
+package com.genspark.Pucci.Payload.request.auth;
 
 import javax.validation.constraints.*;
 import java.util.Set;
@@ -18,6 +18,16 @@ public class SignupRequest {
   @NotBlank
   @Size(min = 3, max = 20)
   private String name;
+
+  @NotBlank
+  @Size(max = 10)
+  private String phone;
+
+  private Set<String> role;
+
+  @NotBlank
+  @Size(min = 6, max = 40)
+  private String password;
 
   public String getSignInType() {
     return signInType;
@@ -42,16 +52,6 @@ public class SignupRequest {
   public void setPhone(String phone) {
     this.phone = phone;
   }
-
-  @NotBlank
-  @Size(max = 10)
-  private String phone;
-
-  private Set<String> role;
-
-  @NotBlank
-  @Size(min = 6, max = 40)
-  private String password;
 
   public String getUsername() {
     return username;

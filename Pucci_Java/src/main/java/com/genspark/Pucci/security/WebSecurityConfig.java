@@ -51,6 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return new BCryptPasswordEncoder();
   }
 
+
+  //This method protects all routes except the ones explicitly permitted.
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
@@ -58,10 +60,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
       .authorizeRequests()
       .antMatchers("/api/auth/**").permitAll()
-      .antMatchers("/api/test/**").permitAll()
-      .antMatchers("/ws-message").permitAll()
-
-
+      .antMatchers("/api/users/**").permitAll()
+      .antMatchers("/api/products/**").permitAll()
+      .antMatchers("/api/orders/**").permitAll()
       .anyRequest().authenticated();
 
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
