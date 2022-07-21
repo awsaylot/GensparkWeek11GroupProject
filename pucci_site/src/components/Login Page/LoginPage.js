@@ -2,6 +2,7 @@ import React, { useState, useEffect, formValues, isSubmit } from 'react';
 import Modal from 'react-modal';
 import Button from 'react-bootstrap/esm/Button';
 import "./LoginPage.css";
+import AuthService from '../../services/auth.service';
 
 const LoginPage = props => {
 
@@ -27,6 +28,9 @@ const LoginPage = props => {
     setFormErrors(validate(formValues));
     setFormPlaceholders(validate(formValues));
     setIsSubmit(true);
+    AuthService.login(formValues.username, formValues.password)
+      .then((res) => props.setCurrentUser(res))
+      .finally(props.handleClose());
   };
 
   useEffect(() => {
@@ -74,18 +78,20 @@ const LoginPage = props => {
             <div className='login-header-container'>
               <h2 className='login-header'> Sign In</h2>
             </div>
+            <form onSubmit={handleSubmit} className="login-text-input-wrapper">
 
             <div className="login-text-input-wrapper">
 
               <div className="usernameField">
-                <input type="text" className="username" placeholder="Username" defaultValue={formValues.username} onChange={handleChange} required />
+                <input type="text" className="username" name="username" placeholder="Username" defaultValue={formValues.username} onChange={handleChange} required />
                 <p className="errors">{formErrors.username}</p>
               </div>
 
               <div className="passwordField">
-                <input type="text" className="password" placeholder="Password" defaultValue={formValues.password} onChange={handleChange} required />
+                <input type="text" className="password" name="password" placeholder="Password" defaultValue={formValues.password} onChange={handleChange} required />
                 <p className="errors">{formErrors.password}</p>
               </div>
+
             </div>
 
             <div className="login-checkbox-input-wrapper">
@@ -93,8 +99,9 @@ const LoginPage = props => {
             </div>
 
             <div className="login-btn-wrapper">
-              <Button className="login-btn" onClick={handleSubmit}>Sign in</Button>
+              <Button className="login-btn" type="submit" onClick={handleSubmit}>Sign in</Button>
             </div>
+            </form>
 
             <p className="no-account-message">No existing account? <a href="#" onClick={props.onRegisterClick}>Register here</a></p>
 

@@ -13,11 +13,20 @@ const Navigation = props => {
           <div className="col-xs-12 col-sm-12 col-md-12">
             <h1 className="title pucci-logo">P U C C I </h1>
               <div className="nav-user-btn-container">
-                <button className='nav-login-btn' onClick={props.onLoginClick}>Sign in</button>
+                {props.currentUser ? (
+                  <button className='nav-login-btn' onClick={props.logout}>
+                    Logout
+                  </button>
+                ) : (
+                <>
+                    <button className='nav-login-btn' onClick={props.onLoginClick}>Sign in</button>
+                    <button className='nav-register-btn' onClick={props.onRegisterClick}>Register</button>
+                </>
+                )}
+                
                 <button className='nav-favorites-btn'><IoMdHeartEmpty className="nav-favorites-btn-icon"/></button>
                 <button className='nav-bag-btn'><BsBag className="nav-bag-btn-icon"/>Bag</button>
                 <button className='nav-search-btn'><BiSearch className="nav-search-btn-icon"/></button>
-                {/* <button className='nav-register-btn' onClick={props.onRegisterClick}>Create an account</button> */}
               </div>
             <nav>
               <ul className="nav nav-tabs">
@@ -61,11 +70,17 @@ const Navigation = props => {
 }
 
 const Header = props => {
+  const logout= (e) => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  }
   return (
     <div className="header-container">
       <Navigation 
         onLoginClick={props.onLoginClick}
         onRegisterClick={props.onRegisterClick}
+        currentUser={props.currentUser}
+        logout={logout}
       />
     </div>
   )

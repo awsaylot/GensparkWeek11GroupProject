@@ -77,6 +77,8 @@ public class AuthController {
         .map(item -> item.getAuthority())
         .collect(Collectors.toList());
 
+    System.out.println(loginRequest.getUsername());
+
     return ResponseEntity.ok(new JwtResponse(jwt,
                          userDetails.getId(), 
                          userDetails.getUsername(), 
@@ -138,6 +140,7 @@ public class AuthController {
 
     String randomCode = RandomString.make(64);
     user.setVerificationCode(randomCode);
+    //TODO: Set to false for production. This is set true to make testing easier without having to check email to reregister
     user.setEnabled(true);
 
 

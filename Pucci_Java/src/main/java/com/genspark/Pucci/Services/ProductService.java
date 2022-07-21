@@ -45,6 +45,7 @@ public class ProductService implements ProductServiceInterface {
 
     @Override
     public String deleteProduct(int product_id) {
+        System.out.println(product_id);
         this.productDao.deleteById(product_id);
         return "Product " + product_id + " has been deleted";
     }

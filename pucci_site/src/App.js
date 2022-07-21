@@ -18,20 +18,22 @@ function App() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [register, setRegister] = useState(false);
+  const [currentUser, setCurrentUser] = useState(undefined)
 
-  ProductService.getAllProducts();
 
   const product = {
     "name": "Black rattan lounger",
     "price":"400"
   }
 
-  ProductService.createProduct(product);
-
-
-  ProductService.getProductById(3);
-
-  ProductService.deleteProductById(1);
+  // ProductService.createProduct(product)
+    // .then(ProductService.createProduct(product))
+    // .then(ProductService.createProduct(product))
+    // .then(ProductService.createProduct(product))
+    // .then(ProductService.createProduct(product))
+    // .then(ProductService.getAllProducts())
+    // .then(ProductService.getProductById(2))
+    // .thenProductService.deleteProductById(3)
 
 
   const toggleLogin = () => {
@@ -54,6 +56,7 @@ function App() {
         <Header 
           onLoginClick={toggleLogin}
           onRegisterClick={toggleRegister}
+          currentUser={currentUser}
         />
 
         {isOpen &&
@@ -61,6 +64,7 @@ function App() {
             onRegisterClick={openRegisterPage}
             modalIsOpen={isOpen}
             handleClose={toggleLogin}
+            setCurrentUser={setCurrentUser}
           />
         }
 
