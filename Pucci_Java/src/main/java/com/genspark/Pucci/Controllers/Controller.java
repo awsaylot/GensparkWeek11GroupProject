@@ -80,6 +80,7 @@ public class Controller {
 
     @PostMapping("/api/products")
     public Product addProduct(@RequestBody Product product) {
+        System.out.println(product.getName());
         return this.productService.addProduct(product);
     }
 

@@ -6,8 +6,7 @@ class ProductService {
 
     getAllProducts() {
         return axios.get(
-            this.PRODUCTS_URL,
-            { headers: { 'Content-Type': 'application/json' } }
+            this.PRODUCTS_URL
         ).then(function (response) {
             console.log(response)
             return response.data;
@@ -18,10 +17,8 @@ class ProductService {
 
     getProductById(product_id) {
         const url = this.PRODUCTS_URL + '/' + product_id;
-
         return axios.get(
-            url,
-            { headers: { 'Content-Type': 'application/json' } }
+            url
         ).then(function (response) {
             console.log(response)
             return response.data;
@@ -31,18 +28,11 @@ class ProductService {
         });
     }
 
-    createProduct(product_name, product_price) {
-        return axios.post(
+    createProduct(product) {
+        return axios
+        .post(
             this.PRODUCTS_URL,
-            {
-                headers: { 'Content-Type': 'application/json' },
-                data:
-                {
-                    name: product_name,
-                    price: product_price
-                }
-
-            }
+            product
         ).then(function (response) {
             console.log(response)
             return response.data;
@@ -54,16 +44,7 @@ class ProductService {
     updateProduct(product) {
         return axios.put(
             this.PRODUCTS_URL,
-            {
-                headers: { 'Content-Type': 'application/json' },
-                data:
-                {
-                    product_id: product.product_id,
-                    name: product.name,
-                    price: product.price
-                }
-
-            }
+            product
         ).then(function (response) {
             console.log(response)
             return response.data;
@@ -76,8 +57,7 @@ class ProductService {
         const url = this.PRODUCTS_URL + '/' + product_id;
 
         return axios.delete(
-            url,
-            { headers: { 'Content-Type': 'application/json' } }
+            url
         ).then(function (response) {
             console.log(response)
             return response.data;
