@@ -26,7 +26,7 @@ const ProductCard = (props) => {
             src={props.CardImage}
           />
           <Card.Body>
-            <Card.Title>{props.product.title}</Card.Title>
+            <Card.Title>{props.product.name}</Card.Title>
             <Card.Text>
               {props.product.description}
             </Card.Text>
@@ -34,7 +34,7 @@ const ProductCard = (props) => {
           </Card.Body>
         </Card>
         <Toast className="toast" onClose={() => setShow(false)} show={show} delay={2000} autohide>
-          <Toast.Body>Added {props.product.title} to cart!</Toast.Body>
+          <Toast.Body>Added {props.product.name} to cart!</Toast.Body>
         </Toast>
       </div>
     </>
