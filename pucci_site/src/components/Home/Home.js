@@ -6,7 +6,6 @@ import CarouselFade from "../Carousel/Carousel";
 const Home = () => {
   return (
     <div className="home-container">
-
       <CarouselFade />
 
       <div className="card-grid-container">
