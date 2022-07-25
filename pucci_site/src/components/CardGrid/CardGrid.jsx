@@ -60,7 +60,7 @@ const products = [
     title: "Sunglasses",
     description: "Fancy sungladsses",
     img: PinkNavyTop,
-  },
+  }]
 
 function CardGrid() {
   return (
