@@ -9,7 +9,6 @@ import com.genspark.Pucci.Services.*;
 import com.genspark.Pucci.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -120,4 +119,6 @@ public class Controller {
     public String deleteUser(@PathVariable String user_id) {
         return this.userService.deleteUser(Integer.parseInt(user_id));
     }
+
+
 }

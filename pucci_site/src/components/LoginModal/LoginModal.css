@@ -28,17 +28,20 @@
 }
 
 .login-text-input-wrapper {
-  align-self: center;
-  width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 300px;
+    margin-bottom: 20px;
 }
 
-.login-content input[type="text"] {
-  width: 100%;
-  margin-top: 20px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  text-align: center;
+.login-content input[type="text"], .login-content input[type="password"]{
+    width: 100%;
+    margin-top: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .login-checkbox-input-wrapper {
@@ -70,9 +73,10 @@
 }
 
 .no-account-message {
-  color: black;
-  align-self: center;
-  font-size: 14px;
+    color: black;
+    align-self: center;
+    font-size: 14px;
+    margin-top: -20px;
 }
 
 /* Can uncomment this back when the button comes back */
@@ -86,6 +90,11 @@
     top: -18px
 } */
 
-.errors {
-  color: red;
+.error-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.error-message {
+    color:red;
 }

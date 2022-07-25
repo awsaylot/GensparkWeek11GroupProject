@@ -27,10 +27,17 @@
   margin-top: 20px;
 }
 
-.login-info-header,
-.personal-info-header {
-  color: black;
-  margin-bottom: 5px;
+.personal-info-container .field {
+  margin-top: 20px;
+}
+
+.login-info-container .field {
+    margin-top: 20px;
+}
+
+.login-info-header , .personal-info-header {
+    color: black;
+    margin-bottom: 5px;
 }
 
 .register-text-input-wrapper {
@@ -40,14 +47,14 @@
   margin: 0 auto;
 }
 
-.register-text-input-wrapper input[type="text"] {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  border-width: thin;
-  padding: 5px;
-  width: 100%;
-  text-align: center;
+.register-text-input-wrapper input[type="text"] , .register-text-input-wrapper input[type="password"], .register-text-input-wrapper input[type="email"]{
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-width: thin;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
 }
 
 .name-field {

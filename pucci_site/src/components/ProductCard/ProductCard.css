@@ -18,8 +18,15 @@
 }
 
 .empty-heart-icon:hover {
-  color: red;
-  animation: heartbeat 0.8s infinite;
+    color: red;
+    animation: heartbeat 0.8s infinite;
+}
+
+.toast {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    z-index: 3;
 }
 
 @keyframes heartbeat {
