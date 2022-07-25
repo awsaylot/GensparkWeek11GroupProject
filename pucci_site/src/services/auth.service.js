@@ -23,13 +23,15 @@ class AuthService {
 	}
 
 	register(username, email, password, name, phone) {
+		let role = ['user']
 		return axios.post(API_URL + "signup", {
 			username,
 			email,
 			password,
 			signInType: "user", //Admin accounts should be populated through other means
 			name,
-			phone
+			phone,
+			role
 		});
 	}
 }
